@@ -1,20 +1,16 @@
 const connection = require('./config/connection');
 const inq = require('inquirer');
-const formTable = require('console.table');
-const { default: inquirer } = require('inquirer');
+//const formTable = require('console.table');
 
 //Creating a connect to my database
 connection.connect((error) => 
 {
-    if (error){
-        throw error;
-    }
+    if (error) throw error;
 });
 
 //Displaying Main Options
 function showOptions(){
-    inq
-    .prompt([
+    inq.prompt([
         {
             type: 'list',
             message: 'Pick an option to edit or view the database!',
@@ -29,14 +25,20 @@ function showOptions(){
             'Update employee manager',
             'Exit'],
         }
-    ])
-    .then((response) => {
+    ]).then((response) => {
         console.log("You chose" + response.dbChoice)
         //Switch statement with data and functions for each choice
         //Each switch will call a function then show the menu again after it is finished
         //the quit/default wll exit app. 
         switch(response.dbChoice){
-            case 'View all employees'{}
+            case 'View all employees': showEmployeeList();
+            break;
+            case 'View all roles': showRolesList();
+            break;
+            case 'View all departments': showDepartmentList();
+            break;
+            default: console.log("Exiting Interface!");
+            break;
         }  
 
     });
@@ -45,17 +47,32 @@ function showOptions(){
 
 //Can create the other functions outside of this
 
-/* function showDepartmentList(){
-    select * from department;
-} */
+function showDepartmentList(){
+    const sqlDepartment = "select * from department;"
+    connection.query(sqlDepartment, (error, depData) =>{
+        if (error) throw error;
+        console.table(depData);
+        showOptions();
+    })
+}
 
-/* function showEmployeeList(){
-    select * from employee;
-} */
+function showEmployeeList(){
+    const sqlEmployee = "select * from employee;"
+    connection.query(sqlEmployee, (error, empData) =>{
+        if (error) throw error;
+        console.table(empData);
+        showOptions();
+    })
+}
 
-/* function showRolesList(){
-    select * from roles;
-} */
+function showRolesList(){
+    const sqlRoles = "select * from roles;"
+    connection.query(sqlRoles, (error, roleData) =>{
+        if (error) throw error;
+        console.table(roleData);
+        showOptions();
+    })
+}
 
 
 
