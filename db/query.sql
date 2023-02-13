@@ -1,3 +1,0 @@
-Select * from department;
-
-Select 
