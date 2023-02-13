@@ -5,7 +5,7 @@ const inq = require('inquirer');
 //Creating a connect to my database
 connection.connect((error) => 
 {
-    if (error) throw error;
+    if (error) console.log(error);
 });
 
 //Displaying Main Options
@@ -17,12 +17,11 @@ function showOptions(){
             name: 'dbChoice',
             choices: [
             'View all employees',
-            'View all employees by department',
-            'View all employees by manager',
+            'View all departments',
+            'View all roles',
             'Add employee',
-            'Remove employee',
-            'Update employee role', 
-            'Update employee manager',
+            'Add role',
+            'Add department', 
             'Exit'],
         }
     ]).then((response) => {
@@ -33,9 +32,15 @@ function showOptions(){
         switch(response.dbChoice){
             case 'View all employees': showEmployeeList();
             break;
+            case 'View all departments': showDepartmentList();
+            break;
             case 'View all roles': showRolesList();
             break;
-            case 'View all departments': showDepartmentList();
+            case 'Add employee': console.log("reached");//addEmployee();
+            break;
+            case 'Add role': console.log("reached");//addRole();
+            break;
+            case 'Add department': console.log("reached");//addDepartment();
             break;
             default: console.log("Exiting Interface!");
             break;
