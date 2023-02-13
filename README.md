@@ -5,13 +5,15 @@ Node.js command-line application that takes in information for a company and sto
 This application takes user input from the terminal and tables used to see information for a company
 
 ## Installation
+Install SQL
 Clone the repository and then run 'node i'.
 
 ## Usage
+Edit the connection file by inputting your username and password
 Run 'npm start' in the terminal and input information wanted for the team members.
 ![image](https://user-images.githubusercontent.com/114710827/218561832-6fdee205-709d-4120-89c4-b54600eb0d0b.png)
 
-//video!!!!!!!!!!!!!!!!!
+https://drive.google.com/file/d/1UQs5oGVytUW5mG7mQWmNNc9BAgIodHPu/view
 
 ## Contributors
 Justus Schoppmann
